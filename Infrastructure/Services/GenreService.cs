@@ -39,7 +39,7 @@ namespace Infrastructure.Services
 
 
 
-            return genresModel;
+            return genresModel.OrderBy(g=> g.Name);
         }
 
     }

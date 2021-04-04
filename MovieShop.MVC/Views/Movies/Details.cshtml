@@ -1,8 +1,7 @@
-﻿
-@using System.Globalization
+﻿@using System.Globalization
 @using ApplicationCore.ServiceInterfaces
 @model ApplicationCore.Models.Response.MovieDetailsResponseModel
-<div class="bg-image" >
+<div class="bg-image" style="background-image: url(@Model.BackdropUrl)">
 
     <div class="row">
         <div class="col-md-3 offset-2">
@@ -64,25 +63,25 @@
                 </li>
                 <li class="list-group-item">
                     <button type="button"
-                            class="btn btn-outline-light btn-lg btn-block btn-sm">
+                            class="btn btn-light btn-lg btn-block btn-sm">
                         <i class="far fa-edit mr-1"></i>
                         REVIEW
                     </button>
                 </li>
                 <li class="list-group-item">
                     <button type="button"
-                            class="btn btn-outline-light btn-lg btn-block btn-sm">
-                        <i class="fas fa-play mr-1"></i> TRAILER
+                            class="btn btn-light btn-lg btn-block btn-sm">
+                         TRAILER
                     </button>
                 </li>
 
                 <li class="list-group-item">
-                    <a class="btn btn-light btn-lg btn-block btn-sm" asp-route-id="@Model.Id" asp-controller="User" asp-action="BuyMovie">
+                    <a class="btn btn-light btn-lg btn-block btn-sm" asp-route-id="@Model.Id">
                         BUY @Model.Price
                     </a>
 
-                    <a class="btn btn-light btn-lg btn-block btn-sm" asp-route-id="@Model.Id" asp-controller="User" asp-action="BuyMovie">
-                        WATCH MOVIE
+                    <a class="btn btn-outline-light btn-lg btn-block btn-sm" asp-route-id="@Model.Id" >
+                        <i class="fas fa-play mr-1"></i> WATCH MOVIE
                     </a>
                 </li>
             </ul>
@@ -148,7 +147,7 @@
                     <tr>
                         <td>
                             <img src="@cast.ProfilePath"
-                                 class="cast-small-img rounded-circle"
+                                 class="img-fluid rounded"
                                  alt="@cast.Name" />
                         </td>
                         <td> @cast.Name </td>

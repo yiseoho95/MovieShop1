@@ -32,6 +32,7 @@ namespace ApplicationCore.Models.Response
         public List<RoleModel> Roles { get; set; }
     }
 
+
     public class RoleModel
     {
         public int Id { get; set; }
@@ -48,7 +49,6 @@ namespace ApplicationCore.Models.Response
             public DateTime PurchaseDateTime { get; set; }
         }
     }
-
 
     public class MovieChartResponseModel
     {
@@ -82,4 +82,6 @@ namespace ApplicationCore.Models.Response
         public decimal Rating { get; set; }
         public string Name { get; set; }
     }
+
+
 }

@@ -29,13 +29,18 @@ namespace MovieShop.MVC.Controllers
         {
             return View();
         }
-
-        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
             var movie = await _movieService.GetMovieAsync(id);
             return View(movie);
         }
+        public async Task<IActionResult> Genre(int genreId, int pageSize = 25, int page = 1)
+        {
+            var movies = await _movieService.GetMoviesByGenre(genreId, pageSize, page);
+
+            return View(movies);
+        }
+
 
         //receive Movie inforation from View then submitted
         [HttpPost]
@@ -44,5 +49,6 @@ namespace MovieShop.MVC.Controllers
             _movieService.CreateMovie(model);
             return RedirectToAction("Index");
         }
+
     }
 }
