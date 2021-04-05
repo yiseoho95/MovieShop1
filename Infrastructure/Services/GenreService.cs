@@ -36,9 +36,6 @@ namespace Infrastructure.Services
                     Name = genre.Name
                 });
             }
-
-
-
             return genresModel.OrderBy(g=> g.Name);
         }
 

@@ -16,15 +16,14 @@ namespace Infrastructure.Services
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        //private readonly IAsyncRepository<Favorite> _favoriteRepository;
         private readonly IMapper _mapper;
 
 
-        public MovieService(IMovieRepository movieRepository, IMapper mapper)//, IAsyncRepository<Favorite> favoriteRepository
+        public MovieService(IMovieRepository movieRepository, IMapper mapper)
         {
             _movieRepository = movieRepository;
             _mapper = mapper;
-            //_favoriteRepository = favoriteRepository;
+
 
         }
 
@@ -64,7 +63,7 @@ namespace Infrastructure.Services
         {
             var movie = await _movieRepository.GetByIdAsync(id);
 
-            var favoriteCount = await _movieRepository.GetCountAsync(f => f.Id == id);
+            //var favoriteCount = await _movieRepository.GetCountAsync(f => f.Id == id);
 
             var castList = new List<MovieDetailsResponseModel.CastResponseModel>();
             foreach (var cast in movie.MovieCasts)
@@ -109,7 +108,7 @@ namespace Infrastructure.Services
             response.ReleaseDate = movie.ReleaseDate;
             response.RunTime = movie.RunTime;
             response.Price = movie.Price;
-            response.FavoritesCount = favoriteCount;
+           // response.FavoritesCount = favoriteCount;
             response.Casts = castList;
             response.Genres = genreList;
 
@@ -118,9 +117,9 @@ namespace Infrastructure.Services
             return response;
         }
 
-        public async Task<IEnumerable<MovieResponseModel>> GetMoviesByGenre(int genreId, int pageSize = 25, int page = 1)
+        public async Task<IEnumerable<MovieResponseModel>> GetMoviesByGenre(int genreId)
         {
-            var movies = await _movieRepository.GetMoviesByGenre(genreId, pageSize, page);
+            var movies = await _movieRepository.GetMoviesByGenre(genreId);
             var response = new List<MovieResponseModel>();
             foreach (var movie in movies)
             {

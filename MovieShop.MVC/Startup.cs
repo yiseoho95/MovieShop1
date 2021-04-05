@@ -37,6 +37,9 @@ namespace MovieShop.MVC
             
             services.AddTransient<IMovieService, MovieService>();
             services.AddScoped<IGenreService, GenreService>();
+
+            services.AddScoped<ICastService, CastService>();
+            services.AddScoped<IAsyncRepository<Cast>, CastRepository>();
             
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IAsyncRepository<Genre>, EFRepository<Genre>>();
