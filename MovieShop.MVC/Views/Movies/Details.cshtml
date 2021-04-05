@@ -150,7 +150,7 @@
                                  class="w-50 p-3 rounded"
                                  alt="@cast.Name" />
                         </td>
-                        <td> @cast.Name </td>
+                        <td><a asp-controller="Casts" asp-route-id="@cast.Id" asp-action="Details">@cast.Name</a>  </td>
                         <td> @cast.Character</td>
                     </tr>
                 }
