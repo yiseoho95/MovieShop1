@@ -1,58 +1,56 @@
 ﻿@model ApplicationCore.Models.Response.CastDetailsResponseModel
 
+@{
+    ViewBag.Title = "Cast Details";
+    Layout = "_Layout";
+}
 
-<h2>
-    Cast Details
-</h2>
 
 <div class="row">
-    <div class="col-md-4">
-
-
-        <!-- Movie Card row -->
+    <div class="col-md-2">
         <div>
-            <img src="@Model.ProfilePath"
-                 class="img-fluid rounded-circle"
-                 alt="@Model.Name" />
-        </div>
-
-    </div>
-    <div class="col-md-4">
-        <div class="row mt-2">
-            <div class="col-12">
+            <div>
+                <img src="@Model.ProfilePath"
+                     class="img-fluid rounded"
+                     alt="@Model.Name" />
+            </div>
+            <div>
                 <h1>
                     @Model.Name
                 </h1>
-                <small class="text-muted">@if (@Model.Gender == "2")
-                {<span> Male </span>}
-                else
-                {<span> Female </span>} </small>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="col-4 text-secondary font-weight-bold mt-1">
-                @Model.TmdbUrl
-            </div>
-
-        </div>
-
-        <div class="container-fluid bg-light">
-            <table class="table">
-                <tbody>
-                    @foreach (var movie in Model?.Movies)
+                <small class="text-muted">
+                    @if (@Model.Gender == "2")
                     {
-                        <tr>
-                            <td>
-                                <img src="@movie.PosterUrl" class="w-50 p-3 rounded" alt="@movie.Title"/>
-                            </td>
-                            <td>@movie.Title</td>
-                        </tr>
+                        <span> Male </span>
                     }
-
-                </tbody>
-            </table>
+                    else
+                    {
+                        <span> Female </span>
+                    }
+                </small>
+            </div>
+            <div class="row">
+                <div>
+                    <a href=@Model.TmdbUrl class="btn btn-outline-info" role="button">Tmdb Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="container-fluid bg-light">
+            <div><h2>Filmography</h2></div>
+            <div class="row">
+                @foreach (var movie in Model?.Movies)
+                {
+                    <div class="col-6 col-lg-3 col-sm-4 col-xl-2">
+                        <div class="card mb-4 shadow bg-light">
+                            <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id">
+                                <img src="@movie.PosterUrl" class="img-fluid" alt="@movie.Title" />
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
