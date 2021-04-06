@@ -1,0 +1,30 @@
+﻿@model List<ApplicationCore.Models.Response.MovieCardResponseModel>
+<h2>
+    @ViewBag.PageTitle
+</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td> @movie.Id </td>
+                <td> @movie.Title </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*
+    <div class="card mb-4 shadow bg-light">
+        <a asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id">
+            <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title" />
+        </a>
+    </div>
+*@

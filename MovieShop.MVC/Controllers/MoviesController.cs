@@ -34,6 +34,8 @@ namespace MovieShop.MVC.Controllers
             var movie = await _movieService.GetMovieAsync(id);
             return View(movie);
         }
+
+      
         
 
         //receive Movie inforation from View then submitted

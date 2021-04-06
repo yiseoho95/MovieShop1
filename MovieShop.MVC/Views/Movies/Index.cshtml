@@ -1,4 +1,5 @@
-﻿@model List<ApplicationCore.Models.Response.MovieCardResponseModel>
+﻿@using ApplicationCore.Entities
+@model List<ApplicationCore.Models.Response.MovieCardResponseModel>
 <h2>
     @ViewBag.PageTitle
 </h2>
@@ -12,7 +13,7 @@
     </thead>
 
     <tbody>
-        @foreach (var movie in Model)
+    @foreach (var movie in Model)
         {
             <tr>
                 <td> @movie.Id </td>

@@ -63,7 +63,6 @@ namespace Infrastructure.Services
         {
             var movie = await _movieRepository.GetByIdAsync(id);
 
-            //var favoriteCount = await _movieRepository.GetCountAsync(f => f.Id == id);
 
             var castList = new List<MovieDetailsResponseModel.CastResponseModel>();
             foreach (var cast in movie.MovieCasts)
@@ -108,7 +107,6 @@ namespace Infrastructure.Services
             response.ReleaseDate = movie.ReleaseDate;
             response.RunTime = movie.RunTime;
             response.Price = movie.Price;
-           // response.FavoritesCount = favoriteCount;
             response.Casts = castList;
             response.Genres = genreList;
 
@@ -136,10 +134,6 @@ namespace Infrastructure.Services
         }
     }
 
-    //public async Task<MovieDetailsResponseModel> GetMovieAsync(int id)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
 }
 
