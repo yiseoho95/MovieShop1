@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,6 +120,7 @@ namespace Infrastructure.Services
         {
             var movies = await _movieRepository.GetMoviesByGenre(genreId);
             var response = new List<MovieResponseModel>();
+
             foreach (var movie in movies)
             {
                 response.Add(new MovieResponseModel
@@ -132,6 +134,25 @@ namespace Infrastructure.Services
 
             return response;
         }
+
+        //public async Task<MovieResponseModel> GetMoviesByGenre(int genreId)
+        //{
+        //    var movies = await _movieRepository.GetMoviesByGenre(genreId);
+        //   // var response = new MovieResponseModel();
+        //    var response = new List<MovieResponseModel>();
+        //    foreach (var movie in movies)
+        //    {
+        //        response.Add(new MovieResponseModel
+        //        {
+        //            Id = movie.Id,
+        //            Title = movie.Title,
+        //            PosterUrl = movie.PosterUrl,
+        //            ReleaseDate = movie.ReleaseDate
+        //        });
+        //    }
+
+        //    return response;
+        //}
     }
 
 
