@@ -113,6 +113,7 @@ namespace Infrastructure.Data
             builder.Property(u => u.HashedPassword).HasMaxLength(1024);
             builder.Property(u => u.PhoneNumber).HasMaxLength(16);
             builder.Property(u => u.Salt).HasMaxLength(1024);
+            builder.HasIndex(u => u.Salt).IsUnique();
             builder.Property(u => u.IsLocked).HasDefaultValue(false);
         }
         private void ConfigureRole(EntityTypeBuilder<Role> builder)

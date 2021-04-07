@@ -43,7 +43,7 @@ namespace Infrastructure.Helpers
                 .ForMember(p => p.Title, opt => opt.MapFrom(src => src.Movie.Title))
                 .ForMember(p => p.PosterUrl, opt => opt.MapFrom(src => src.Movie.PosterUrl));
 
-            CreateMap<User, UserLoginResponseModel>();
+            //CreateMap<User, UserLoginResponseModel>();
             CreateMap<Role, RoleModel>();
             CreateMap<Genre, GenreModel>().ReverseMap();
 
