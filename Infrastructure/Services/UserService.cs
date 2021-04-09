@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
+using ApplicationCore.Exceptions;
 using ApplicationCore.Models.Request;
 using ApplicationCore.Models.Response;
 using ApplicationCore.RepositoryInterfaces;
@@ -31,7 +32,8 @@ namespace Infrastructure.Services
             // user exists in database
             if (dbUser != null)
             {
-                throw new Exception("user already exists, please login");
+                throw new ConflictException("user already exists, please login");
+                //throw new Exception("user already exists, please login");
             }
 
 
@@ -99,7 +101,27 @@ namespace Infrastructure.Services
 
         public async Task<LoginResponseModel> ValidateUser(string email, string password)
         {
-            throw new NotImplementedException();
+            // we should go to database and get the record by email
+
+            var dbUser = await _userRepository.GetUserByEmail(email);
+
+            if (dbUser == null)
+            {
+                return null;
+            }
+
+            var hashedPassword = HashPassword(password, dbUser.Salt);
+            if (hashedPassword == dbUser.HashedPassword)
+            {
+                // user entered correct password
+                var loginUserResponse = new LoginResponseModel
+                {
+                    Id = dbUser.Id, FirstName = dbUser.FirstName, LastName = dbUser.LastName, Email = dbUser.Email
+                };
+                return loginUserResponse;
+            }
+
+            return null;
         }
     }
 }

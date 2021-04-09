@@ -17,13 +17,13 @@ namespace Infrastructure.Services
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
 
 
-        public MovieService(IMovieRepository movieRepository, IMapper mapper)
+        public MovieService(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
-            _mapper = mapper;
+          //  _mapper = mapper;
 
 
         }

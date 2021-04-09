@@ -21,6 +21,7 @@ namespace ApplicationCore.Entities
         public DateTime? LastLoginDateTime { get; set; }
         public bool? IsLocked { get; set; }
         public int? AccessFailedCount { get; set; }
+        public string ProfilePictureUrl { get; set; }
 
         //NavProp
         public ICollection<Role> Roles { get; set; }

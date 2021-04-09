@@ -15,7 +15,10 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure.Repositories;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.Entities;
+using Infrastructure.Filters;
 using Infrastructure.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using MovieShop.MVC.Middlewares;
 
 namespace MovieShop.MVC
 {
@@ -31,7 +34,9 @@ namespace MovieShop.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(
+                options => options.Filters.Add(typeof(MovieShopHeaderFilter))
+            );
 
             services.AddDbContext<MovieShopDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection")));
             
@@ -46,8 +51,20 @@ namespace MovieShop.MVC
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.Name = "MovieShopAuthCookie";
+                    options.ExpireTimeSpan = TimeSpan.FromHours(2);
+                    options.LoginPath = "/Account/login";
 
-            services.AddAutoMapper(typeof(Startup), typeof(MovieShopMappingProfile));
+                });
+
+            services.AddHttpContextAccessor();
+
+
+            //services.AddAutoMapper(typeof(Startup), typeof(MovieShopMappingProfile));
 
         }
 
@@ -56,7 +73,8 @@ namespace MovieShop.MVC
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
+                app.UseMovieShopExceptionMiddleware();
             }
             else
             {
@@ -69,6 +87,7 @@ namespace MovieShop.MVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

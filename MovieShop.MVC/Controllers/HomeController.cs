@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Filters;
 
 namespace MovieShop.MVC.Controllers
 {
@@ -20,8 +21,18 @@ namespace MovieShop.MVC.Controllers
             _movieService = movieService;
         }
 
+
         public async Task<IActionResult> Index()
         {
+            _logger.LogInformation("Logging non critical information {datetime}", DateTime.UtcNow);
+            try
+            {
+                throw new Exception("My custom Exception");
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("Caught Exception {dateTime}",DateTime.UtcNow);
+            }
             var movies = await _movieService.Get30HighestGrossing();
             return View(movies);
         }
