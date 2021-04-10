@@ -19,6 +19,7 @@ using Infrastructure.Filters;
 using Infrastructure.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using MovieShop.MVC.Middlewares;
+using Serilog;
 
 namespace MovieShop.MVC
 {
@@ -62,6 +63,7 @@ namespace MovieShop.MVC
                 });
 
             services.AddHttpContextAccessor();
+            services.AddMemoryCache();
 
 
             //services.AddAutoMapper(typeof(Startup), typeof(MovieShopMappingProfile));
@@ -84,6 +86,9 @@ namespace MovieShop.MVC
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Serilog
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 

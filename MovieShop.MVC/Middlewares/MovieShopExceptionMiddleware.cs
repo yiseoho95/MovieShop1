@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using ApplicationCore.Exceptions;
+using Serilog;
 
 namespace MovieShop.MVC.Middlewares
 {
