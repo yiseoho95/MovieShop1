@@ -59,6 +59,10 @@ namespace MovieShop.API.Controllers
         public async Task<IActionResult> GetTopRatedMovies()
         {
             var movies = await _movieService.GetTopRatedMovies();
+            if (!movies.Any())
+            {
+                return NotFound("We did not find any movies");
+            }
             return Ok(movies);
         }
 

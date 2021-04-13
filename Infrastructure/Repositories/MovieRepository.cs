@@ -58,7 +58,9 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<Movie>> GetTopRatedMovies()
         {
-            throw new System.NotImplementedException();
+            var movies = await _dbContext.Movies.OrderByDescending(m => m.Rating).Take(10).ToListAsync();
+    
+            return movies;
         }
 
         public async Task<IEnumerable<Review>> GetMovieReviews(int id)
