@@ -11,6 +11,8 @@ namespace ApplicationCore.RepositoryInterfaces
     {
         Task<IEnumerable<Movie>> GetTop30HighestGrossingMovies();
         Task<IEnumerable<Movie>> GetMoviesByGenre(int genreId, int pageSize = 25, int page = 1);
+        Task<IEnumerable<Movie>> GetTopRatedMovies();
+        Task<IEnumerable<Review>> GetMovieReviews(int id);
 
     }
 }

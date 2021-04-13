@@ -110,6 +110,11 @@ namespace UnitTests
             throw new NotImplementedException();
         }
 
+        public Task<IEnumerable<Review>> GetMovieReviews(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<Movie>> GetMoviesByGenre(int genreId, int pageSize = 25, int page = 1)
         {
             throw new NotImplementedException();
@@ -139,6 +144,12 @@ namespace UnitTests
             };
             return _movies;
         }
+
+        public Task<IEnumerable<Movie>> GetTopRatedMovies()
+        {
+            throw new NotImplementedException();
+        }
+
         //-------------------------------------------------------------------
         public Task<IEnumerable<Movie>> ListAllAsync()
         {

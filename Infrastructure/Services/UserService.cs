@@ -123,5 +123,22 @@ namespace Infrastructure.Services
 
             return null;
         }
+
+        public async Task<UserRegisterResponseModel> GetUserDetails(int id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+            if (user == null) throw new NotFoundException("User", id);
+
+            var response = new UserRegisterResponseModel
+            {
+                Id = user.Id, Email = user.Email, FirstName = user.FirstName, LastName = user.LastName
+            };
+            return response;
+        }
+
+        public async Task<User> GetUser(string email)
+        {
+            return await _userRepository.GetUserByEmail(email);
+        }
     }
 }

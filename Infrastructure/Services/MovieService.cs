@@ -11,20 +11,21 @@ using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.Exceptions;
 using AutoMapper;
 using ApplicationCore.Entities;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Services 
 {
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        //private readonly IMapper _mapper;
+
+       
+
 
 
         public MovieService(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
-          //  _mapper = mapper;
-
 
         }
 
@@ -135,24 +136,24 @@ namespace Infrastructure.Services
             return response;
         }
 
-        //public async Task<MovieResponseModel> GetMoviesByGenre(int genreId)
-        //{
-        //    var movies = await _movieRepository.GetMoviesByGenre(genreId);
-        //   // var response = new MovieResponseModel();
-        //    var response = new List<MovieResponseModel>();
-        //    foreach (var movie in movies)
-        //    {
-        //        response.Add(new MovieResponseModel
-        //        {
-        //            Id = movie.Id,
-        //            Title = movie.Title,
-        //            PosterUrl = movie.PosterUrl,
-        //            ReleaseDate = movie.ReleaseDate
-        //        });
-        //    }
+        public async Task<IEnumerable<MovieResponseModel>> GetTopRatedMovies()
+        {
+            var topMovies = await _movieRepository.GetTopRatedMovies();
+            var response = new List<MovieResponseModel>();
 
-        //    return response;
-        //}
+            foreach (var movie in topMovies)
+            {
+                response.Add(new MovieResponseModel
+                    {
+                        Id = movie.Id,
+                        Title = movie.Title,
+                        PosterUrl = movie.PosterUrl
+                    });
+            }
+            return response;
+        }
+
+
     }
 
 

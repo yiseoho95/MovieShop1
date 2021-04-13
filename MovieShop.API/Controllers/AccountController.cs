@@ -31,5 +31,30 @@ namespace MovieShop.API.Controllers
             var registeredUser = await _userService.RegisterUser(requestModel);
             return Ok(registeredUser);
         }
+
+        [HttpGet]
+        [Route("{id:int}", Name = "GetUser")]
+        public async Task<ActionResult> GetUserByIdAsync(int id)
+        {
+            var user = await _userService.GetUserDetails(id);
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> EmailExists([FromQuery] string email)
+        {
+            var user = await _userService.GetUser(email);
+            return Ok(user == null ? new {emailExists = false} : new {emailExists = true});
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult> LoginAsync([FromBody] LoginRequestModel loginRequest)
+        {
+            var user = await _userService.ValidateUser(loginRequest.Email, loginRequest.Password);
+            if (user == null)
+                return Unauthorized();
+            return Ok(user);
+        }
+
     }
 }

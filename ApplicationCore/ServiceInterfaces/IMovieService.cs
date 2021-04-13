@@ -15,5 +15,8 @@ namespace ApplicationCore.ServiceInterfaces
         Task<MovieDetailsResponseModel> GetMovieAsync(int id);
         Task<IEnumerable<MovieResponseModel>> GetMoviesByGenre(int genreId);
         //Task<MovieResponseModel> GetMoviesByGenre(int genreId);
+
+        Task<IEnumerable<MovieResponseModel>> GetTopRatedMovies();
+
     }
 }

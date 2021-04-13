@@ -43,6 +43,32 @@ namespace MovieShop.API.Controllers
         }
 
         // there are 2 types of routing 1. attribute based routing 2. Traditional Routing
+
+
+        [HttpGet]
+        [Route("genre/{genreId:int}")]
+        public async Task<IActionResult> GetMoviesByGenre(int genreId)
+        {
+            var movies = await _movieService.GetMoviesByGenre(genreId);
+            return Ok(movies);
+        }
+
+
+        [HttpGet]
+        [Route("toprated")]
+        public async Task<IActionResult> GetTopRatedMovies()
+        {
+            var movies = await _movieService.GetTopRatedMovies();
+            return Ok(movies);
+        }
+
+        [HttpGet]
+        [Route("{id:int}", Name = "GetMovie")]
+        public async Task<IActionResult> GetMovie(int id)
+        {
+            var movie = await _movieService.GetMovieAsync(id);
+            return Ok(movie);
+        }
     }
 
 }
