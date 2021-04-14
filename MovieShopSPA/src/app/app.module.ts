@@ -7,20 +7,23 @@ import { GenresComponent } from './genres/genres.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { HomeComponent } from './home/home.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     GenresComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
