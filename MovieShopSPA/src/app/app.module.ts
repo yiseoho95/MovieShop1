@@ -9,6 +9,12 @@ import { FooterComponent } from './core/layout/footer/footer.component';
 import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
+import { MovieCardComponent } from './shared/components/movie-card/movie-card.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
+import { MovieCardListComponent } from './movies/movie-card-list/movie-card-list.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { MovieListComponent } from './shared/components/movie-list/movie-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +22,13 @@ import {HttpClientModule} from '@angular/common/http';
     GenresComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    MovieCardComponent,
+    MovieDetailsComponent,
+    MovieCardListComponent,
+    LoginComponent,
+    RegisterComponent,
+    MovieListComponent
   ],
   imports: [
     BrowserModule,

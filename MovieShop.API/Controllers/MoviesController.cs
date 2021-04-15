@@ -73,6 +73,8 @@ namespace MovieShop.API.Controllers
             var movie = await _movieService.GetMovieAsync(id);
             return Ok(movie);
         }
+
+
     }
 
 }

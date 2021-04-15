@@ -14,10 +14,12 @@ namespace MovieShop.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IJwtService _jwtService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService, IJwtService jwtService)
         {
             _userService = userService;
+            _jwtService = jwtService;
         }
 
         [HttpPost]
@@ -47,13 +49,18 @@ namespace MovieShop.API.Controllers
             return Ok(user == null ? new {emailExists = false} : new {emailExists = true});
         }
 
-        [HttpPost("login")]
-        public async Task<ActionResult> LoginAsync([FromBody] LoginRequestModel loginRequest)
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> LoginAsync([FromBody] LoginRequestModel loginRequest)
         {
             var user = await _userService.ValidateUser(loginRequest.Email, loginRequest.Password);
             if (user == null)
                 return Unauthorized();
-            return Ok(user);
+
+            var JwtToken = _jwtService.GenerateToken(user);
+            //must generate a JWT token and send it to client
+            return Ok(new
+            {token = JwtToken});
         }
 
     }

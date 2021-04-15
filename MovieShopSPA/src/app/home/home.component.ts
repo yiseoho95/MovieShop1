@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from '../core/services/movie.service';
+import { MovieCard } from '../shared/models/movie-card';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  movies: MovieCard[] | undefined;
+  constructor(private movieService: MovieService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.movieService.getTop30GrossingMovies().subscribe(
+      m => {
+        this.movies = m;
+        console.table(this.movies);
+      }
+    )
   }
 
 }
