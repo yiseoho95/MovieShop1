@@ -25,10 +25,20 @@ export class ApiService {
   }
 
 
+  getOne(path:string, id?: number): Observable<any> {
+    return this.http.get(`$[environment.apiUrl]${path}` + `/`+id)
+    .pipe(
+      map(resp => resp as any[])
+    );
+  }
 
+  create(path: string, resource: any, options?: any): Observable<any> {
 
+    return this.http.post(`${environment.apiUrl}${path}`, resource).pipe(
+      map(response => response)
+    );
 
-
+  }
 
   //  http status codes such as 400,400,403,404,500,503
   private handleError(error: HttpErrorResponse) {

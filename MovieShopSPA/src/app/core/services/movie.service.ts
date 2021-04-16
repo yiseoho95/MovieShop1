@@ -19,4 +19,14 @@ export class MovieService {
     
     return this.apiService.getById(`${'movies'}`, id);
   }
+
+  getMoviesByGenre(genreId: number): Observable<Movie[]> {
+    return this.apiService.getAll(`${'movies/genre/'}${genreId}`);
+  }
+
+  // getMovies(title: string): Observable<Movie[]>{
+  //   const searchParams = new Map<string, string>();
+  //   searchParams.set('title',title);
+  //   return this.apiService.
+  // }
 }

@@ -1,23 +1,39 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Login } from 'src/app/shared/models/login';
+import { ApiService } from './api.service';
+import { JwtStorageService } from './jwt-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor() { }
+  constructor(private apiService:ApiService, private jwtStorageService: JwtStorageService) { }
 
-  login(){
+  login(userLogin: Login): Observable<boolean>{
 
-    //take username/pw from login Component and post it to API
-
+     //take username/pw from login Component and post it to API
     // once API returns token, we need to store the token in the localstorage of the browser
     // otherwise return false to the component to that component can show the message in the UI
-    
+
+    return this.apiService.create('account/login', userLogin)
+    .pipe(map(response => {
+      if(response){
+        // save the response token to local storage
+        console.log(response);
+        this.jwtStorageService.saveToken(response.token)
+        return true;
+      }
+      return false;
+    }));
+   
   }
 
   logout(){
     // we remove the token from the local storage
+    this.jwtStorageService.destroyToken();
   }
 
   decodeToken(){

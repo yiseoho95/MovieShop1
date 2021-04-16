@@ -15,6 +15,8 @@ import { MovieCardListComponent } from './movies/movie-card-list/movie-card-list
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MovieListComponent } from './shared/components/movie-list/movie-list.component';
+import { SearchMoviesComponent } from './shared/components/search-movies/search-movies.component';
+import { CastDetailsComponent } from './casts/cast-details/cast-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { MovieListComponent } from './shared/components/movie-list/movie-list.co
     MovieCardListComponent,
     LoginComponent,
     RegisterComponent,
-    MovieListComponent
+    MovieListComponent,
+    SearchMoviesComponent,
+    CastDetailsComponent
   ],
   imports: [
     BrowserModule,
