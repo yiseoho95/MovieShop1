@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import{FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GenresComponent } from './genres/genres.component';
@@ -17,6 +17,8 @@ import { RegisterComponent } from './auth/register/register.component';
 import { MovieListComponent } from './shared/components/movie-list/movie-list.component';
 import { SearchMoviesComponent } from './shared/components/search-movies/search-movies.component';
 import { CastDetailsComponent } from './casts/cast-details/cast-details.component';
+
+
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CastDetailsComponent } from './casts/cast-details/cast-details.componen
     AppRoutingModule,
     NgbModule,
     NgbDropdownModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,9 @@
 <div class="container">
-  <form (ngSubmit) = "login()">
+  
+  <form (ngSubmit)="login()" #loginForm="ngForm" >
 
-    <div *ngIf= "invalidLogin" class="alert alert-danger">
-        Invalid username and/or password.
+    <div *ngIf="invalidLogin" class="alert alert-danger">
+      Invalid Email/Password
     </div>
 
     <div class="form-group">
@@ -10,23 +11,36 @@
       <input
         type="email"
         class="form-control"
-        name="userName"
         id="email"
-        aria-describedby="emailHelp"
-        placeholder="Enter email"
+        aria-describedby="emailHelp" name="email"  [(ngModel)]="userLogin.email"
       />
-      <small id="emailHelp" class="form-text text-muted">
-          We'll never share your email with anyone else.
-        </small>
-    
+      <small id="emailHelp" class="form-text text-muted"
+        >We'll never share your email with anyone else.</small
+      >
     </div>
-    
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password" />
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="userLogin.password" />
     </div>
 
-    <input type="submit" value= "Submit" class="btn btn-primary"/>
+    <input type="submit" value="Submit" class="btn btn-primary" />
   </form>
-</div>
 
+</div>
+<!-- <span>
+  {{twowayInfo}}
+</span> -->
+
+
+<!-- ngModel -->
+<!--  Install formMOdule in app.module -->
+<!-- create a model that you wanna use for your form -->
+<!-- always make sure you have name attribute for your form input elements -->
+<!-- [(ngModel)]="userLogin.email" Banana in the box -->
+<!-- Template Vriables -->
+
+<!-- ngModel -->
+<!--Install formsModule in app.module-->
+<!--create a model that you want to use for your form-->
+<!--always make sure you have name attribute for your form input elements-->
+<!--[(ngModel)] = "userLogin.email " Banana in the Box-->

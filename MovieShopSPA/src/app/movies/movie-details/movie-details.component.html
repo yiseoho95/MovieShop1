@@ -28,13 +28,11 @@
           {{ movie?.releaseDate | date: "yyyy" }}
         </div>
         <div class="col-8">
-          <a
-            class="badge badge-pill badge-dark ml-1"
-            *ngFor="let genre of movie?.genres"
-            [routerLink]="['genres/movies', genre.id]"
-          >
-            {{ genre.name }}
-          </a>
+          <ng-container *ngFor="let genre of movie?.genres">
+            <a 
+               [routerLink]="['/genres/movies/', genre.id ]"
+               class="badge badge-pill badge-dark ml-1"> {{genre.name}}</a>
+          </ng-container>
         </div>
       </div>
 

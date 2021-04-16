@@ -3,6 +3,8 @@ import { User } from 'src/app/shared/models/user';
 import { Login } from 'src/app/shared/models/login';
 import { AuthenticationService} from 'src/app/core/services/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { JsonpClientBackend } from '@angular/common/http';
 
 
 @Component({
@@ -12,12 +14,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  invalidLogin: boolean | undefined;
+  //two-way binding --> UI is bound to the Model  
+  //one-way binding
+  invalidLogin: boolean = false;
   returnUrl: string | undefined;
   user: User | undefined;
   userLogin: Login = {
-    password: '',
-    email: ''
+    
+    email: '',
+    password: ''
   };
 
   constructor(private authService: AuthenticationService, private router: Router, private route: ActivatedRoute) { }
@@ -27,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    console.log("form submitted");
     this.authService.login(this.userLogin)
       .subscribe( (response) => {
         if(response){
@@ -40,4 +46,7 @@ export class LoginComponent implements OnInit {
   
     }
 
+    get twowayInfo(){
+      return JSON.stringify(this.userLogin);
+    }
 }
