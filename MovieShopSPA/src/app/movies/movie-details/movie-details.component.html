@@ -134,7 +134,7 @@
 
     <table class="table">
       <tbody>
-        <tr *ngFor="let cast of movie?.casts">
+        <tr *ngFor="let cast of movie?.casts" [routerLink]="['/cast',cast.id]">
           <td>
             <img
               src="{{ cast?.profilePath }}"

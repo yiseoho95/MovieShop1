@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cast } from 'src/app/shared/models/Cast';
+import { CastDetail } from 'src/app/shared/models/cast-detail';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class CastService {
 
   constructor(private apiService: ApiService) { }
 
-  getCastDetailsWithMovies(id:number): Observable<Cast>{
-    return this.apiService.getOne(`${'Cast/'}${id}`);
+  getCastDetailsWithMovies(id:number): Observable<CastDetail>{
+    return this.apiService.getById(`${'Cast'}`, id);
   }
 
 }

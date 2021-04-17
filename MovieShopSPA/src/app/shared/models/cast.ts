@@ -5,4 +5,5 @@ export interface Cast {
     tmdbUrl: string;
     profilePath: string;
     character: string;
+    
   }

@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
+
 import { BrowserModule } from '@angular/platform-browser';
 import{FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { MovieListComponent } from './shared/components/movie-list/movie-list.component';
 import { SearchMoviesComponent } from './shared/components/search-movies/search-movies.component';
-import { CastDetailsComponent } from './casts/cast-details/cast-details.component';
+import { CastsComponent } from './casts/casts.component';
 
 
 
@@ -34,7 +36,8 @@ import { CastDetailsComponent } from './casts/cast-details/cast-details.componen
     RegisterComponent,
     MovieListComponent,
     SearchMoviesComponent,
-    CastDetailsComponent
+    CastsComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { CastDetailsComponent } from './casts/cast-details/cast-details.componen
     NgbDropdownModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
