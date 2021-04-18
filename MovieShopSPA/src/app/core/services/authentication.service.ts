@@ -71,6 +71,10 @@ export class AuthenticationService {
     return null;
   }
 
+  register(user: User){
+    return this.apiService.create('Account', user);
+  }
+
   populateUserInfo(){
 
       if(this.jwtStorageService.getToken()){
